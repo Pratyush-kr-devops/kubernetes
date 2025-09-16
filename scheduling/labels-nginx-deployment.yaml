@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  
+spec:
+  
+  replicas: 15  # Number of pod replicas
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      nodeSelector:
+        app: w3
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
